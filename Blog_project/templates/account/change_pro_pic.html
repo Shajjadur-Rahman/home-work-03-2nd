@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title_block %}Change Profile Picture{% endblock %}
+
+{% block dashboard_content %}
+ <section class="dashboard_content_section">
+        <div class="content">
+          <div class="form">
+            <form action="" method="POST" class="customer_form change_pro_pic">
+              <a href="{% url 'Login_app:user_profile' %}" class="btn btn-info btn-sm"
+                >Back to profile</a
+              >
+              <div class="customer_input">
+                <label for="name">Name : </label>
+                <input type="text" name="name" value="Shajjad" disabled />
+              </div>
+
+              <div class="customer_input">
+                <label for="thana">Image : </label>
+                <input type="file" name="file" />
+              </div>
+
+              <input type="reset" value="Reset" class="button action_btn" />
+              <input type="submit" value="Save" class="button action_btn" />
+            </form>
+          </div>
+        </div>
+      </section>
+{% endblock %}

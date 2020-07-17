@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title_block %} Edit Profile {% endblock %}
+
+{% block dashboard_content %}
+<section class="dashboard_content_section">
+        <div class="content">
+          <div class="form">
+            <form
+              action=""
+              method="POST"
+              class="customer_form edit_customer edit_profile"
+            >
+              <a href="{% url 'Login_app:user_profile' %}" class="btn btn-info btn-sm"
+                >Back to profile</a
+              >
+              <div class="customer_input">
+                <label for="image">Image : </label>
+                <input type="file" name="image" />
+              </div>
+              <div class="customer_input">
+                <label for="name">Full Name : </label>
+                <input type="text" name="name" value="Shajjadur Rahman" />
+              </div>
+              <div class="customer_input">
+                <label for="village">Username : </label>
+                <input type="text" name="username" value="Shajjad" />
+              </div>
+              <div class="customer_input">
+                <label for="email">Email : </label>
+                <input type="email" name="email" value="shaturngbd@gmail.com" />
+              </div>
+              <div class="customer_input">
+                <label for="phone">Phone : </label>
+                <input type="text" name="phone" value="01785259895" />
+              </div>
+              <input type="reset" value="Reset" class="button action_btn" />
+              <input type="submit" value="Save" class="button action_btn" />
+            </form>
+          </div>
+        </div>
+      </section>
+{% endblock %}

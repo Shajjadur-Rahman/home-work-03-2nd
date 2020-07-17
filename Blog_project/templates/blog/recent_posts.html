@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block title_block %} Recent post {% endblock %}
+
+{% block content_block %}
+        {% for post in posts %}
+        <article class="article-recent">
+
+          <div class="article-recent-main">
+
+            <h2 class="article-title">{{ post.title }}</h2>
+            <p class="article-body">
+              {{ post.post_content|range_filter }}
+            </p>
+            <a href="{% url 'Blog_app:posts-detail' post_id=post.pk %}" class="article-read-more">CONTINUE READING</a>
+          </div>
+          <div class="article-recent-secondary">
+            {% if post.post_img %}
+           <div class="img">
+             <img src="{{ post.post_img.url }}" alt="" class="article-image" />
+           </div>
+         {% else %}
+        <img
+            src="https://www.pongboss.com/wp-content/uploads/2017/09/nutrition-cover-1024x700.jpg"
+            alt=""
+            class="article-image"
+          />
+         {% endif %}
+            <p class="article-info">{{ post.created_at }}</p>
+          </div>
+
+        </article>
+{% endfor %}
+
+{% endblock %}

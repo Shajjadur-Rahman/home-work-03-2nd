@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title_block %} Profile {% endblock %}
+
+{% block dashboard_content %}
+ <section class="dashboard_content_section">
+        <div class="content">
+          <div class="profile">
+            <div class="profile_image">
+              <img src="{% static 'resources/img/user.jpg' %}" alt="Profile Image" />
+            </div>
+            <a href="{% url 'Login_app:change_pro_pic' %}"
+              ><button class="button profile_btn">
+                Change profile pic
+              </button></a
+            >
+            <h2>Full Name : Md. Shajjad Shatu</h2>
+            <h2>Username : shajjad</h2>
+            <h2>Email : shaturngbd@gmail.com</h2>
+            <h2>Phone : 01785259895</h2>
+
+            <a href="{% url 'Login_app:edit_user_profile' %}" class="button profile_btn"
+              >Edit Profile</a
+            >
+          </div>
+        </div>
+      </section>
+{% endblock %}
+

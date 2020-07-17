@@ -1,0 +1,38 @@
+
+{% load custom_filters %}
+
+<aside class="sidebar">
+    {% if request.user.is_authenticated %}
+        <div class="sidebar-widget">
+           <h2 class="widget-title">Category</h2>
+          <ul>
+            {% for category in categories %}
+            <li><a href="{% url 'Blog_app:posts-under-category' cat_id=category.pk %}">{{ category.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="sidebar-widget">
+          <ul>
+            <li><a href="">Create Author</a></li>
+            <li><a href="{% url 'Blog_app:create-category' %}">Create Category</a></li>
+            <li><a href="{% url 'Blog_app:create-post' %}">Create Post</a></li>
+          </ul>
+        </div>
+        {% endif %}
+        <div class="sidebar-widget">
+          <h2 class="widget-title">RECENT POST</h2>
+         {% for post in recent_post %}
+          <div class="widget-recent-post">
+            <h3 class="widget-recent-post-title">{{ post.title|range_title_filter }}</h3>
+            <div class="img">
+              <img
+              src="https://www.pongboss.com/wp-content/uploads/2017/09/nutrition-cover-1024x700.jpg"
+              alt=""
+              class="widget-image"
+            />
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </aside>
+</div>

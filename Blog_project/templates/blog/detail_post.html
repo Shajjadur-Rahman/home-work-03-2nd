@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title_block %} Post detail {% endblock %}
+
+{% block content_block %}
+    <article class="article-featured">
+
+          <h2 class="article-title">Lorem ipsum dolor sit amet.</h2>
+         {% if post.post_img %}
+          <div class="img">
+             <img src="{{ post.post_img.url }}" alt="" class="article-image" />
+           </div>
+         {% else %}
+        <div class="img">
+        <img
+            src="https://www.pongboss.com/wp-content/uploads/2017/09/nutrition-cover-1024x700.jpg"
+            alt=""
+            class="article-image"
+          />
+            </div>
+         {% endif %}
+          <p class="article-info">{{ post.created_at }}</p>
+          <p class="article-body">
+            {{ post.post_content|linebreaks }}
+          </p>
+
+        </article>
+{% endblock %}
+

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block title_block %} home {% endblock %}
+
+{% block content_block %}
+    <article class="article-featured">
+
+          <h2 class="article-title">Lorem ipsum dolor sit amet.</h2>
+         {% if post.post_img %}
+          <div class="img">
+             <img src="{{ post.post_img.url }}" alt="" class="article-image" />
+           </div>
+         {% else %}
+        <div class="img">
+        <img
+            src="https://www.pongboss.com/wp-content/uploads/2017/09/nutrition-cover-1024x700.jpg"
+            alt=""
+            class="article-image"
+          />
+            </div>
+         {% endif %}
+          <p class="article-info">{{ post.created_at }}</p>
+          <p class="article-body">
+            {{ post.post_content|range_filter|linebreaks }}
+          </p>
+
+        </article>
+        {% for post in posts_all %}
+        <article class="article-recent">
+
+          <div class="article-recent-main">
+
+            <h2 class="article-title">{{ post.title }}</h2>
+            <p class="article-body">
+              {{ post.post_content|range_filter }}
+            </p>
+            <a href="{% url 'Blog_app:posts-detail' post_id=post.pk %}" class="article-read-more">CONTINUE READING</a>
+          </div>
+          <div class="article-recent-secondary">
+            {% if post.post_img %}
+           <div class="img">
+             <img src="{{ post.post_img.url }}" alt="" class="article-image" />
+           </div>
+         {% else %}
+        <img
+            src="https://www.pongboss.com/wp-content/uploads/2017/09/nutrition-cover-1024x700.jpg"
+            alt=""
+            class="article-image"
+          />
+         {% endif %}
+            <p class="article-info">{{ post.created_at }}</p>
+          </div>
+
+        </article>
+{% endfor %}
+            <div class="pagination">
+              {% if posts_all.has_previous %}
+              <a href="?page={{ posts_all.previous_page_number }}" data-color="red">&laquo;</a>
+              {% endif %}
+                 {% for num in posts_all.paginator.page_range %}
+                  {% if posts_all.number == num %}
+                    <a href="?page={{ num }}" class="active">{{ num }}</a>
+                  {% else %}
+                    <a href="?page={{ num }}">{{ num }}</a>
+                  {% endif %}
+                {% endfor %}
+              {% if posts_all.has_next %}
+              <a href="?page={{ posts_all.next_page_number }}">&raquo;</a>
+              {% endif %}
+            </div>
+
+
+{% endblock %}
+
